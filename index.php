@@ -21,13 +21,8 @@
 				<input class="searchButton" type="submit" value="Search">
             </form>
             </div>
-        </div>
-        
-    </div>    
-
-    <div class="adminContainer">
-            Admin 
-        
-    </div>
+        </div>  
+    </div> 
+ <div class="adminContainer" > @Copy Right by Admin  </div>
 </body>
 </html>
