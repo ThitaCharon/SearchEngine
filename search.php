@@ -1,4 +1,8 @@
 <?php
+    if ($_GET['term']== ""){
+        header("Location: index.php");
+    }
+
 	if(isset($_GET["term"])) {
 		$term = $_GET["term"];
 	}
