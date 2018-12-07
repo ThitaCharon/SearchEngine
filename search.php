@@ -1,4 +1,6 @@
 <?php
+include("config.php");
+
     if ($_GET['term']== ""){
         header("Location: index.php");
     }
