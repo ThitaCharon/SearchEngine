@@ -2,85 +2,120 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* {
+    margin     : 0;
+    padding    : 0;
+    box-sizing : border-box;
+    }
 
-html,body {
-    font-family: 'Roboto', sans-serif;
-    font-size: 62.5%;
-    height: 100%;
-    width: 100%;
-}
- body{
-     background-image: url('./assets/images/andre-benz-1205969-unsplash.jpg');
-     background-size:'cover';
-     background-repeat: no-repeat;
-     background-position: bottom left;
+html, body {
+    font-family : 'Roboto', sans-serif;
+    font-size   : 62.5%;
+    height      : 100%;
+    width       : 100%;
+    }
 
+body {
+    background-image    : url('../images/andre-benz-1205969-unsplash.jpg');
+    background-size     : 'cover';
+    background-repeat   : no-repeat;
+    background-position : bottom left;
+    
+    
+    }
 
- }
 .login {
-     width: 280px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    color: #ffffff;
-   
-   
-}
+    width               : 280px;
+    position            : absolute;
+    top                 : 50%;
+    left                : 50%;
+    color               : #fff;
+    transform           : translate(-50%, -50%);
+    animation-name      : logLoad;
+    animation-duration  : 2s;
+    animation-fill-mode : backwards;
+    
+    
+    }
 
 
-.login  .login__heading{
-    text-transform: uppercase;
-    float: left;
-    font-size: 4rem;
-    border-bottom: .6rem solid #4caf50;
-    margin-bottom: 5rem;
-    padding-bottom: 1.3rem;
+.login .login__heading {
+    text-transform      : uppercase;
+    float               : left;
+    font-size           : 4rem;
+    border-bottom       : .6rem solid #4caf50;
+    margin-bottom       : 5rem;
+    padding-bottom      : 1.3rem;
+    animation-delay     : 2s;
+    animation-duration  : 2s;
+    animation-name      : logLoad;
+    animation-fill-mode : backwards;
+    
+    }
 
-}
+.log__form-cred:empty {
+    font-size : 2rem;
+    color     : indianred;
+    }
 
-.clear,.clear::before,.clear::after{
-clear: both;
-}
+.clear, .clear::before, .clear::after {
+    clear : both;
+    }
 
-.log__form-cred{
-    width: 100%;
-    font-size: 2rem;
-    padding: 8px 0;
-    margin: 8px 0;
-    border-bottom: 1px solid #4caf50;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-}
+.log__form-cred {
+    width           : 100%;
+    font-size       : 2rem;
+    padding         : 8px 0;
+    margin          : 8px 0;
+    border-bottom   : 1px solid #4caf50;
+    display         : flex;
+    flex-wrap       : nowrap;
+    justify-content : space-between;
+    }
+
 .log__form-cred > input {
-    margin-right: 6rem;
-    width: 80%;
-    padding-left: 1rem;
-    border: none;
-    outline: none;
-    background: none;
-    color: #ffffff;
-    font-size: 1.8rem;
-}
-.log__form-cred i {
-    font-size: 2.6rem;
+    margin-right : 6rem;
+    width        : 80%;
+    padding-left : 1rem;
+    border       : none;
+    outline      : none;
+    background   : none;
+    color        : #fff;
+    font-size    : 1.8rem;
+    }
 
-}
+.log__form-cred i {
+    font-size : 2.6rem;
+    
+    }
 
 .btn {
-    font-size: 2rem;
-    font-family: inherit;
-    background-color: transparent;
-    color: #4caf50;
-    border: 2px solid #4caf50;
-    background-color: #fff;
-    outline: none;
-    border: none;
-    padding: 5px 2rem;
-}
+    width          : 100%;
+    background     : none;
+    border         : 2px solid #4caf50;
+    color          : #fff;
+    padding        : 5px;
+    font-size      : 1.8rem;
+    cursor         : pointer;
+    margin         : 1.2rem;
+    text-transform : uppercase;
+    
+    
+    }
+
+.btn:hover {
+    transition       : all 0.2s;
+    transform-origin : top;
+    transform-style  : preserve-3d;
+    transform        : scale(1.5);
+    }
+
+.btn:active {
+    transform : scale(1);
+    }
+
+
+@keyframes logLoad {
+    from { opacity : 0; transform : translate(-20rem, -20rem) }
+    to { opacity : 1; transform : translate(-50%, -50%); }
+    }

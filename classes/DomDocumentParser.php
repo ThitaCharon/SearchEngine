@@ -1,30 +1,37 @@
 <?php
-class DomDocumentParser {
 
-	private $doc;
+class DomDocumentParser
+{
 
-	public function __construct($url) {
+    private $doc;
 
-		$options = array(
-			'http'=>array('method'=>"GET", 'header'=>"User-Agent: doodleBot/0.1\n")
-			);
-		$context = stream_context_create($options);
+    public function __construct($url)
+    {
 
-		$this->doc = new DomDocument();
-		@$this->doc->loadHTML(file_get_contents($url, false, $context));
-	}
+        $options = array(
+            'http' => array('method' => "GET", 'header' => "User-Agent: doodleBot/0.1\n")
+        );
+        $context = stream_context_create($options);
 
-	public function getlinks() {
-		return $this->doc->getElementsByTagName("a");
-	}
+        $this->doc = new DomDocument();
+        @$this->doc->loadHTML(file_get_contents($url, false, $context));
+    }
 
-	public function getTitletags() {
-		return $this->doc->getElementsByTagName("title");
-	}
+    public function getlinks()
+    {
+        return $this->doc->getElementsByTagName("a");
+    }
 
-	public function getMetaTags() {
-		return $this->doc->getElementsByTagName("meta");
-	}
+    public function getTitletags()
+    {
+        return $this->doc->getElementsByTagName("title");
+    }
+
+    public function getMetaTags()
+    {
+        return $this->doc->getElementsByTagName("meta");
+    }
 
 }
+
 ?>
