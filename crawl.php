@@ -4,7 +4,8 @@ include("classes/DomDocumentParser.php");
 
 $alreadyCrawled = array();
 $crawling = array();
-
+$alreadyFoundImages = array();
+ 
 function linkExists($url) {
 	global $con;
 
@@ -12,8 +13,8 @@ function linkExists($url) {
 
 	$query->bindParam(":url", $url);
 	$query->execute();
-
-	return $query->rowCount() != 0;
+// return true or false check the db is already insert 
+	return $query->rowCount() != 0; 
 }
 
 function insertLink($url, $title, $description, $keywords) {
@@ -30,6 +31,20 @@ function insertLink($url, $title, $description, $keywords) {
 	return $query->execute();
 }
 
+// url: link for site and src : link for image
+function insertImage($url, $src, $alt, $title) {
+	global $con;
+
+	$query = $con->prepare("INSERT INTO images(siteUrl, imageUrl, alt, title)
+							VALUES(:siteUrl, :imageUrl, :alt, :title)");
+
+	$query->bindParam(":siteUrl", $url);
+	$query->bindParam(":imageUrl", $src);
+	$query->bindParam(":alt", $alt);
+	$query->bindParam(":title", $title);
+
+	return $query->execute();
+}
 
 function createLink($src, $url) {
 	// echo($url);
@@ -53,6 +68,7 @@ function createLink($src, $url) {
 
 
 function getDetails($url) {
+	global $alreadyFoundImages;
 
 	$parser = new DomDocumentParser($url);
 	$titleArray = $parser->getTitleTags();
@@ -71,6 +87,7 @@ function getDetails($url) {
 	$keywords = "";
 	$metasArray = $parser->getMetatags();
 
+
 	foreach($metasArray as $meta) {
 
 		if($meta->getAttribute("name") == "description") {
@@ -85,11 +102,40 @@ function getDetails($url) {
 	$description = str_replace("\n", "", $description);
 	$keywords = str_replace("\n", "", $keywords);
 
-	insertLink($url,$title,$description,$keywords);
-	echo "URL: $url, Description: $description , Keywords $keywords <br>";
+	
+	if(linkExists($url)) {
+		echo "$url already exists<br>";
+	}
+	else if(insertLink($url, $title, $description, $keywords)) {
+		echo "SUCCESS: $url<br>";
+	}
+	else {
+		echo "ERROR: Failed to insert $url<br>";
+	}
+
+	$imageArray = $parser->getImages();
+	foreach($imageArray as $image) {
+		
+		$src = $image->getAttribute("src");
+		$alt = $image->getAttribute("alt");
+		$title = $image->getAttribute("title");
+
+		if(!$title && !$alt) {
+			continue;
+		}
+
+		$src = createLink($src, $url);
+
+		if(!in_array($src, $alreadyFoundImages)) {
+			$alreadyFoundImages[] = $src;
+
+			insertImage($url, $src, $alt, $title);
+		}
+
+	}
+	// echo "URL: $url, Description: $description , Keywords $keywords <br>";
 
 }
-
 
 function followLinks($url) {
 	global $alreadyCrawled;

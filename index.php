@@ -17,7 +17,7 @@
     <div class = "wrapper indexPage">
         <div class = "mainSection">
             <div class = "logoContainer">
-                <img src = "assets/images/google_logo.png">
+                <img src = "assets/images/google_logo.png" title="Logo of our site" alt="Site logo">
             </div>
         
         <div class = "searchContainer"> 
