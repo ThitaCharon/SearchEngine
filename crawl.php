@@ -172,6 +172,6 @@ function followLinks($url) {
 
 }
 
-$startUrl = "http://www.yelp.com";
+$startUrl = "http://www.cnn.com";
 followLinks($startUrl);
 ?>
