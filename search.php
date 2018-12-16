@@ -23,6 +23,7 @@ $page = isset($_GET["page"]) ? $_GET["page"] : 1;
 <head>
     <title>MyGoodle</title>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 <div class="wrapper">
@@ -122,5 +123,6 @@ $page = isset($_GET["page"]) ? $_GET["page"] : 1;
     </div>
 
 </div>
+<script src="assets/js/script.js"></script>
 </body>
 </html>

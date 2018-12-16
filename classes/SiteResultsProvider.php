@@ -48,13 +48,13 @@ class SiteResultsProvider {
 			$url = $row["url"];
 			$title = $row["title"];
 			$description = $row["description"];
-			$title = $this -> trimField($title,55);
-			$description = $this -> trimField($description,55);
+			$title = $this -> trimField($title,70);
+			$description = $this -> trimField($description,70);
 
 			$resultsHtml .= "<div class='resultContainer'>
 
 								<h3 class='title'>
-									<a class='result' href='$url'>
+									<a class='result' href='$url' data-linkId ='$id'>
 										$title
 									</a>
 								</h3>
@@ -69,8 +69,8 @@ class SiteResultsProvider {
 		return $resultsHtml;
 	}
     private function trimField($string, $charlimit){
-        $dots = strlen($string) > $charlimit ? "..." :"..";
-        return substr($string,0,$charlimit).$dots;
+        $dots = strlen($string) > $charlimit ? "..." :" ";
+        return substr($string,0,$charlimit) . $dots;
     }
 }
 
