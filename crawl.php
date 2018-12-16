@@ -31,6 +31,8 @@ function insertLink($url, $title, $description, $keywords) {
 	return $query->execute();
 }
 
+
+
 // url: link for site and src : link for image
 function insertImage($url, $src, $alt, $title) {
 	global $con;
@@ -137,6 +139,7 @@ function getDetails($url) {
 
 }
 
+
 function followLinks($url) {
 	global $alreadyCrawled;
 	global $crawling;
@@ -172,6 +175,6 @@ function followLinks($url) {
 
 }
 
-$startUrl = "http://www.cnn.com";
+$startUrl = "https://www.bbc.com/news";
 followLinks($startUrl);
-?>
+header("Location: index.php");
